@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India's Semaglutide War — March 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0f;
+    --cream: #f5f0e8;
+    --acid: #c8f500;
+    --blood: #e8002a;
+    --gold: #f0a500;
+    --fog: rgba(245,240,232,0.06);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--acid);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid var(--acid);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, width 0.3s, height 0.3s;
+    opacity: 0.5;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9990;
+    opacity: 0.35;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 22vw, 320px);
+    line-height: 0.85;
+    color: rgba(245,240,232,0.025);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -2px;
+    user-select: none;
+    animation: driftLeft 30s linear infinite alternate;
+  }
+
+  @keyframes driftLeft {
+    from { transform: translate(-48%, -50%); }
+    to   { transform: translate(-52%, -50%); }
+  }
+
+  .ticker-bar {
+    background: var(--blood);
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 60px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-inner span {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .ticker-inner span::before {
+    content: '▶';
+    margin-right: 12px;
+    color: var(--acid);
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .hero-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 80px 60px 60px;
+    gap: 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--acid);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--acid);
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 8vw, 120px);
+    line-height: 0.92;
+    letter-spacing: -1px;
+    margin-bottom: 32px;
+    color: var(--cream);
+  }
+
+  .hero-headline .accent-word {
+    color: var(--acid);
+    display: block;
+  }
+  .hero-headline .blood-word {
+    color: var(--blood);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.65);
+    max-width: 480px;
+    font-weight: 300;
+    border-left: 2px solid var(--acid);
+    padding-left: 20px;
+    margin-bottom: 40px;
+  }
+
+  .date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(200,245,0,0.08);
+    border: 1px solid rgba(200,245,0,0.3);
+    padding: 10px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--acid);
+    text-transform: uppercase;
+  }
+  .date-badge .dot {
+    width: 7px; height: 7px;
+    background: var(--blood);
+    border-radius: 50%;
+    animation: blink 1s ease infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.2; }
+  }
+
+  /* Right column: Big number cards */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .stat-box {
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(245,240,232,0.07);
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .stat-box:hover { background: rgba(245,240,232,0.07); }
+  .stat-box:nth-child(1) { border-top: 2px solid var(--acid); }
+  .stat-box:nth-child(2) { border-top: 2px solid var(--blood); }
+  .stat-box:nth-child(3) { border-top: 2px solid var(--gold); }
+  .stat-box:nth-child(4) { border-top: 2px solid var(--cream); }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 62px;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .stat-box:nth-child(1) .stat-num { color: var(--acid); }
+  .stat-box:nth-child(2) .stat-num { color: var(--blood); }
+  .stat-box:nth-child(3) .stat-num { color: var(--gold); }
+  .stat-box:nth-child(4) .stat-num { color: var(--cream); }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    font-family: 'Space Mono', monospace;
+    line-height: 1.5;
+  }
+
+  /* ============ SECTION: THE RACE ============ */
+  .section {
+    padding: 100px 60px;
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+  }
+
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(245,240,232,0.1);
+    max-width: 200px;
+  }
+
+  .race-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .racer-card {
+    padding: 40px 32px;
+    background: rgba(245,240,232,0.03);
+    border: 1px solid rgba(245,240,232,0.06);
+    position: relative;
+    cursor: default;
+    transition: all 0.25s ease;
+    overflow: hidden;
+  }
+  .racer-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,245,0,0.06), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .racer-card:hover::before { opacity: 1; }
+  .racer-card:hover { transform: translateY(-3px); }
+
+  .racer-rank {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    line-height: 1;
+    color: rgba(245,240,232,0.05);
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    pointer-events: none;
+  }
+
+  .racer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .racer-brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--acid);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .racer-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--gold);
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .racer-price-sub {
+    font-size: 10px;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 20px;
+  }
+  .racer-note {
+    font-size: 13px;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.6;
+    border-top: 1px solid rgba(245,240,232,0.07);
+    padding-top: 16px;
+  }
+
+  /* ============ PRICE DRAMA SECTION ============ */
+  .price-drama {
+    padding: 100px 60px;
+    background: linear-gradient(180deg, transparent, rgba(200,245,0,0.03), transparent);
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+  }
+
+  .big-comparison {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .price-side {
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+  }
+
+  .price-side.branded {
+    background: rgba(232,0,42,0.06);
+    border: 1px solid rgba(232,0,42,0.2);
+  }
+  .price-side.generic {
+    background: rgba(200,245,0,0.05);
+    border: 1px solid rgba(200,245,0,0.2);
+  }
+
+  .price-tag-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .price-side.branded .price-tag-label { color: var(--blood); }
+  .price-side.generic .price-tag-label { color: var(--acid); }
+
+  .price-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 8vw, 110px);
+    line-height: 0.9;
+    letter-spacing: -2px;
+  }
+  .price-side.branded .price-big { color: var(--blood); }
+  .price-side.generic .price-big { color: var(--acid); }
+
+  .price-period {
+    font-size: 12px;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    margin-top: 8px;
+  }
+
+  .vs-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .vs-arrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: rgba(245,240,232,0.2);
+    letter-spacing: 2px;
+  }
+  .vs-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: rgba(245,240,232,0.06);
+    line-height: 1;
+  }
+  .vs-drop {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--acid);
+    background: rgba(200,245,0,0.1);
+    padding: 8px 20px;
+    border: 1px solid rgba(200,245,0,0.3);
+    letter-spacing: 2px;
+  }
+
+  /* ============ CONTEXT PILLS ============ */
+  .context-section {
+    padding: 100px 60px;
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+  }
+
+  .context-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+    align-items: start;
+  }
+
+  .context-text h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 32px;
+  }
+  .context-text h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .context-text p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .sidebar-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .fact-item {
+    padding: 24px 20px;
+    border-left: 3px solid transparent;
+    background: rgba(245,240,232,0.03);
+    transition: all 0.3s;
+  }
+  .fact-item:nth-child(1) { border-color: var(--acid); }
+  .fact-item:nth-child(2) { border-color: var(--blood); }
+  .fact-item:nth-child(3) { border-color: var(--gold); }
+  .fact-item:nth-child(4) { border-color: rgba(245,240,232,0.3); }
+  .fact-item:hover { background: rgba(245,240,232,0.06); }
+
+  .fact-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .fact-item:nth-child(1) .fact-num { color: var(--acid); }
+  .fact-item:nth-child(2) .fact-num { color: var(--blood); }
+  .fact-item:nth-child(3) .fact-num { color: var(--gold); }
+  .fact-item:nth-child(4) .fact-num { color: var(--cream); }
+
+  .fact-desc {
+    font-size: 11px;
+    color: rgba(245,240,232,0.4);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    line-height: 1.5;
+  }
+
+  /* ============ NOVA / NOVO FIGHTBACK ============ */
+  .fightback {
+    padding: 100px 60px;
+    background: rgba(232,0,42,0.03);
+    border-bottom: 1px solid rgba(232,0,42,0.1);
+  }
+
+  .fightback-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+    align-items: start;
+  }
+
+  .fightback h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95;
+    letter-spacing: -1px;
+    color: var(--blood);
+    margin-bottom: 24px;
+  }
+  .fightback-sub {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.55);
+    font-weight: 300;
+  }
+
+  .strategy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .strategy-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    padding: 24px;
+    background: rgba(245,240,232,0.03);
+    border: 1px solid rgba(245,240,232,0.06);
+    align-items: start;
+    transition: background 0.2s;
+  }
+  .strategy-item:hover { background: rgba(245,240,232,0.06); }
+
+  .strategy-icon {
+    width: 48px; height: 48px;
+    background: rgba(232,0,42,0.12);
+    border: 1px solid rgba(232,0,42,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .strategy-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .strategy-desc {
+    font-size: 13px;
+    color: rgba(245,240,232,0.45);
+    line-height: 1.6;
+  }
+
+  /* ============ WHAT IT MEANS FOR INDIA ============ */
+  .india-section {
+    padding: 120px 60px;
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+    text-align: center;
+  }
+
+  .india-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.1;
+    color: var(--cream);
+    max-width: 800px;
+    margin: 0 auto 60px;
+  }
+  .india-section h2 em { color: var(--acid); font-style: italic; }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .pillar {
+    padding: 48px 28px;
+    background: rgba(245,240,232,0.03);
+    border: 1px solid rgba(245,240,232,0.06);
+    text-align: left;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--acid);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .pillar:hover::after { transform: scaleX(1); }
+  .pillar:hover { background: rgba(200,245,0,0.04); }
+
+  .pillar-icon { font-size: 28px; margin-bottom: 20px; display: block; }
+  .pillar-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .pillar-text {
+    font-size: 13px;
+    color: rgba(245,240,232,0.45);
+    line-height: 1.7;
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline-section {
+    padding: 100px 60px;
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+  }
+
+  .timeline {
+    margin-top: 60px;
+    position: relative;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(245,240,232,0.08);
+    transform: translateX(-50%);
+  }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    margin-bottom: 48px;
+    align-items: center;
+  }
+  .tl-item:nth-child(even) .tl-left { order: 3; text-align: left; }
+  .tl-item:nth-child(even) .tl-right { order: 1; text-align: right; }
+
+  .tl-left, .tl-right {
+    padding: 0 30px;
+  }
+  .tl-left { text-align: right; }
+
+  .tl-dot {
+    width: 14px; height: 14px;
+    background: var(--acid);
+    border-radius: 50%;
+    margin: 0 auto;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 4px var(--ink), 0 0 0 5px rgba(200,245,0,0.2);
+  }
+  .tl-item.past .tl-dot { background: rgba(245,240,232,0.3); box-shadow: 0 0 0 4px var(--ink), 0 0 0 5px rgba(245,240,232,0.08); }
+  .tl-item.now .tl-dot { background: var(--blood); box-shadow: 0 0 0 4px var(--ink), 0 0 0 5px rgba(232,0,42,0.3), 0 0 20px rgba(232,0,42,0.4); animation: pulse 1.5s ease infinite; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px var(--ink), 0 0 0 5px rgba(232,0,42,0.3), 0 0 20px rgba(232,0,42,0.4); }
+    50% { box-shadow: 0 0 0 4px var(--ink), 0 0 0 10px rgba(232,0,42,0.15), 0 0 30px rgba(232,0,42,0.2); }
+  }
+
+  .tl-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--acid);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .tl-item.past .tl-date { color: rgba(245,240,232,0.3); }
+  .tl-item.now .tl-date { color: var(--blood); }
+
+  .tl-event {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--cream);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .tl-item.past .tl-event { color: rgba(245,240,232,0.45); }
+
+  .tl-detail {
+    font-size: 12px;
+    color: rgba(245,240,232,0.3);
+    line-height: 1.5;
+  }
+
+  /* ============ FOOTER / SIGN OFF ============ */
+  .footer-stamp {
+    padding: 80px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+
+  .footer-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 38px);
+    line-height: 1.25;
+    color: rgba(245,240,232,0.8);
+    font-style: italic;
+    border-left: 3px solid var(--gold);
+    padding-left: 28px;
+  }
+  .footer-quote cite {
+    display: block;
+    font-size: 12px;
+    font-style: normal;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 16px;
+  }
+
+  .footer-meta {
+    text-align: right;
+  }
+  .footer-meta .logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 0.9;
+    color: rgba(245,240,232,0.06);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .footer-meta p {
+    font-size: 11px;
+    color: rgba(245,240,232,0.25);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1.5px;
+    line-height: 2;
+  }
+
+  /* ============ ANIMATIONS ON SCROLL ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ============ SCROLLBAR ============ */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--acid); border-radius: 2px; }
+
+  @media (max-width: 900px) {
+    .hero-main, .race-grid, .context-grid, .fightback-grid, .pillars, .footer-stamp {
+      grid-template-columns: 1fr;
+    }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .big-comparison { grid-template-columns: 1fr; }
+    .vs-block { display: none; }
+    .section, .price-drama, .context-section, .fightback, .india-section, .timeline-section, .footer-stamp {
+      padding: 60px 24px;
+    }
+    .hero-main { padding: 48px 24px; }
+    .timeline::before { left: 24px; }
+    .tl-item { grid-template-columns: 24px 1fr; }
+    .tl-left { display: none; }
+    .tl-right { order: unset !important; text-align: left !important; }
+    .tl-item:nth-child(even) .tl-left { order: unset !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- ======= HERO ======= -->
+<section class="hero">
+  <div class="ticker-bar">
+    <div class="ticker-inner">
+      <span>Patent Expired March 20 2026</span>
+      <span>40+ Generic Manufacturers</span>
+      <span>Prices Down 90%</span>
+      <span>₹1,446 Cr GLP-1 Market</span>
+      <span>89.8 Million Diabetics in India</span>
+      <span>Dr. Reddy's · Sun Pharma · Zydus · Glenmark · Natco · Eris</span>
+      <span>Patent Expired March 20 2026</span>
+      <span>40+ Generic Manufacturers</span>
+      <span>Prices Down 90%</span>
+      <span>₹1,446 Cr GLP-1 Market</span>
+      <span>89.8 Million Diabetics in India</span>
+      <span>Dr. Reddy's · Sun Pharma · Zydus · Glenmark · Natco · Eris</span>
+    </div>
+  </div>
+
+  <div class="hero-bg-text">SEMA</div>
+
+  <div class="hero-main">
+    <div class="hero-left">
+      <div class="hero-label">Breaking Pharma Intel · India</div>
+      <h1 class="hero-headline">
+        India's<br>
+        <span class="accent-word">Semaglutide</span>
+        <span class="blood-word">War</span><br>
+        Has Begun.
+      </h1>
+      <p class="hero-sub">
+        On March 20, 2026, a single patent expired in India — and within 48 hours, 16+ generic versions hit shelves. Prices crashed 90%. The world's second-best-selling drug is now a battlefield.
+      </p>
+      <div class="date-badge">
+        <span class="dot"></span>
+        Live · March 23, 2026 · India
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-box reveal">
+        <div class="stat-num">90%</div>
+        <div class="stat-label">Price crash<br>in 48 hrs</div>
+      </div>
+      <div class="stat-box reveal">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Generic<br>manufacturers</div>
+      </div>
+      <div class="stat-box reveal">
+        <div class="stat-num">₹220</div>
+        <div class="stat-label">Lowest price<br>per shot (Eris)</div>
+      </div>
+      <div class="stat-box reveal">
+        <div class="stat-num">$26B</div>
+        <div class="stat-label">Global<br>2024 sales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======= THE RACERS ======= -->
+<section class="section">
+  <div class="section-tag">The Starting Grid</div>
+  <div class="race-grid">
+
+    <div class="racer-card reveal">
+      <div class="racer-rank">01</div>
+      <div class="racer-name">Dr. Reddy's</div>
+      <div class="racer-brand">Obeda · Usema (with USV)</div>
+      <div class="racer-price">₹4,200</div>
+      <div class="racer-price-sub">per month</div>
+      <div class="racer-note">Phase III head-to-head vs Wegovy. API & formulation developed in-house. Targeting 87 countries globally as patents fall.</div>
+    </div>
+
+    <div class="racer-card reveal">
+      <div class="racer-rank">02</div>
+      <div class="racer-name">Zydus Lifesciences</div>
+      <div class="racer-brand">Semaglyn · Mashema</div>
+      <div class="racer-price">₹2,200</div>
+      <div class="racer-price-sub">per month (reusable pen)</div>
+      <div class="racer-note">Innovative reusable pen device format. Co-marketing agreement with Lupin. Oral semaglutide Phase data expected Q3 2026.</div>
+    </div>
+
+    <div class="racer-card reveal">
+      <div class="racer-rank">03</div>
+      <div class="racer-name">Glenmark Pharma</div>
+      <div class="racer-brand">GLIPIQ®</div>
+      <div class="racer-price">₹325</div>
+      <div class="racer-price-sub">per week — 84% drop</div>
+      <div class="racer-note">Launched hours after patent expiry. Aggressively priced to capture mass market. Sharpest opening shot in this price war.</div>
+    </div>
+
+    <div class="racer-card reveal">
+      <div class="racer-rank">04</div>
+      <div class="racer-name">Natco Pharma</div>
+      <div class="racer-brand">Semanat · Semafull</div>
+      <div class="racer-price">₹1,290</div>
+      <div class="racer-price-sub">per month (vial format)</div>
+      <div class="racer-note">First to launch. Multi-dose vial approach — lowest cost-per-dose. Priced 90% below Wegovy. Clinic and hospital channel play.</div>
+    </div>
+
+    <div class="racer-card reveal">
+      <div class="racer-rank">05</div>
+      <div class="racer-name">Eris Lifesciences</div>
+      <div class="racer-brand">SUNDAE</div>
+      <div class="racer-price">₹220</div>
+      <div class="racer-price-sub">per shot — lowest listed</div>
+      <div class="racer-note">Boldest price on Day 1. Pen device version expected April 2026 at ₹4,000–4,500/month. Two-channel, two-price strategy.</div>
+    </div>
+
+    <div class="racer-card reveal">
+      <div class="racer-rank">06</div>
+      <div class="racer-name">Sun Pharma</div>
+      <div class="racer-brand">Noveltreat · Sematrinity</div>
+      <div class="racer-price">Coming</div>
+      <div class="racer-price-sub">Pre-filled pen format</div>
+      <div class="racer-note">India's largest pharma by market cap. Biocon tie-up for Asian & African markets. Positioned for volume, not just price.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======= PRICE DRAMA ======= -->
+<section class="price-drama">
+  <div class="section-tag">The Price Shock</div>
+
+  <div class="big-comparison">
+    <div class="price-side branded reveal">
+      <div class="price-tag-label">Novo Nordisk Wegovy</div>
+      <div class="price-big">₹16,400</div>
+      <div class="price-period">per month · before generics</div>
+    </div>
+
+    <div class="vs-block">
+      <div class="vs-arrow">▼▼▼</div>
+      <div class="vs-label">VS</div>
+      <div class="vs-drop">–90%</div>
+    </div>
+
+    <div class="price-side generic reveal">
+      <div class="price-tag-label">Generic Semaglutide (floor)</div>
+      <div class="price-big">₹1,290</div>
+      <div class="price-period">per month · and falling</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======= CONTEXT ======= -->
+<section class="context-section">
+  <div class="section-tag">Why This Is Bigger Than A Drug Launch</div>
+
+  <div class="context-grid">
+    <div class="context-text reveal">
+      <h2>India has <em>89.8 million</em> diabetics. Most never touched semaglutide — until now.</h2>
+      <p>For five years, Ozempic and Wegovy existed in India the way luxury cars do — technically available, practically out of reach. The drug that rewired global obesity medicine was priced for a tiny urban elite.</p>
+      <p>That changes this week. The GLP-1 market — already worth ₹1,446 crore and growing at a pace that shocked even optimists — just lost its price ceiling. CareEdge Ratings projects it hits ₹4,500–5,000 crore by 2030. That's a 3-4x expansion driven entirely by access.</p>
+      <p>With 254 million adults living with generalised obesity, India doesn't just have a diabetes problem. It has a metabolic crisis. And the pharma industry just dropped the most powerful weapon against it from ₹16,000 to ₹1,290 overnight.</p>
+    </div>
+
+    <div class="sidebar-facts reveal">
+      <div class="fact-item">
+        <div class="fact-num">89.8M</div>
+        <div class="fact-desc">Adults with diabetes<br>in India (2024)</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">254M</div>
+        <div class="fact-desc">Adults with<br>generalised obesity</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">5×</div>
+        <div class="fact-desc">Anti-obesity market<br>growth in 5 years</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">$347M</div>
+        <div class="fact-desc">India GLP-1 market<br>projected by 2035</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======= NOVO FIGHTBACK ======= -->
+<section class="fightback">
+  <div class="section-tag">The Defender's Gambit</div>
+
+  <div class="fightback-grid">
+    <div class="reveal">
+      <h2>Novo Nordisk didn't go quietly.</h2>
+      <p class="fightback-sub">The day before India's semaglutide patent expired, the US FDA approved Wegovy HD — a 7.2mg dose delivering 20.7% mean weight loss. No Indian generic can match it yet. That's not coincidence. That's strategy.</p>
+    </div>
+
+    <div class="strategy-list reveal">
+      <div class="strategy-item">
+        <div class="strategy-icon">💊</div>
+        <div>
+          <div class="strategy-title">Wegovy HD Approval</div>
+          <div class="strategy-desc">7.2mg vs 2.4mg standard. 20.7% weight loss in STEP UP trial. Generics cannot replicate immediately. US launch April 2026.</div>
+        </div>
+      </div>
+      <div class="strategy-item">
+        <div class="strategy-icon">📉</div>
+        <div>
+          <div class="strategy-title">37% Price Cut (Nov 2025)</div>
+          <div class="strategy-desc">Pre-emptively slashed Indian Wegovy pricing months before patent expiry to reduce the generic price advantage gap.</div>
+        </div>
+      </div>
+      <div class="strategy-item">
+        <div class="strategy-icon">🤝</div>
+        <div>
+          <div class="strategy-title">Emcure Partnership</div>
+          <div class="strategy-desc">Partnered with Indian pharma Emcure to launch a second branded semaglutide. Fighting for the Indian market with a local face.</div>
+        </div>
+      </div>
+      <div class="strategy-item">
+        <div class="strategy-icon">💊</div>
+        <div>
+          <div class="strategy-title">Oral Wegovy Already in US</div>
+          <div class="strategy-desc">Once-daily oral semaglutide launched in the US in 2026. Removes the self-injection barrier — a massive patient segment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======= WHAT IT MEANS ======= -->
+<section class="india-section">
+  <h2 class="reveal">This isn't just a <em>price war.</em><br>It's a public health moment.</h2>
+
+  <div class="pillars">
+    <div class="pillar reveal">
+      <span class="pillar-icon">🌍</span>
+      <div class="pillar-title">Global Export Engine</div>
+      <div class="pillar-text">Dr. Reddy's is targeting 87 countries. Indian peptide manufacturers are positioning for every market where semaglutide patents fall through 2030.</div>
+    </div>
+    <div class="pillar reveal">
+      <span class="pillar-icon">💉</span>
+      <div class="pillar-title">Device Innovation</div>
+      <div class="pillar-text">Companies are differentiating via delivery: reusable pens, pre-filled pens, multi-dose vials, and oral tablets in development. It's not just the molecule anymore.</div>
+    </div>
+    <div class="pillar reveal">
+      <span class="pillar-icon">⚠️</span>
+      <div class="pillar-title">The Counterfeit Risk</div>
+      <div class="pillar-text">With 50+ brands flooding in, IQVIA warns that quality surveillance becomes critical. Peptide manufacturing complexity creates real risk of substandard products.</div>
+    </div>
+    <div class="pillar reveal">
+      <span class="pillar-icon">📦</span>
+      <div class="pillar-title">Tier 2–3 Reach</div>
+      <div class="pillar-text">Novo Nordisk barely built presence beyond metros. Indian generics companies are going where the real patient load is — smaller cities, rural clinics.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======= TIMELINE ======= -->
+<section class="timeline-section">
+  <div class="section-tag">How We Got Here</div>
+
+  <div class="timeline">
+    <div class="tl-item past reveal">
+      <div class="tl-left">
+        <div class="tl-date">2024</div>
+        <div class="tl-event">$26 billion global sales</div>
+        <div class="tl-detail">Ozempic + Wegovy become world's 2nd biggest drug</div>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-right"></div>
+    </div>
+
+    <div class="tl-item past reveal">
+      <div class="tl-left"></div>
+      <div class="tl-dot"></div>
+      <div class="tl-right">
+        <div class="tl-date">March 2025</div>
+        <div class="tl-event">Lilly's Mounjaro lands in India</div>
+        <div class="tl-detail">Immediately challenges Wegovy's dominance</div>
+      </div>
+    </div>
+
+    <div class="tl-item past reveal">
+      <div class="tl-left">
+        <div class="tl-date">June 2025</div>
+        <div class="tl-event">Wegovy launches in India</div>
+        <div class="tl-detail">Novo Nordisk finally enters Indian obesity market</div>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-right"></div>
+    </div>
+
+    <div class="tl-item past reveal">
+      <div class="tl-left"></div>
+      <div class="tl-dot"></div>
+      <div class="tl-right">
+        <div class="tl-date">Oct 2025</div>
+        <div class="tl-event">Mounjaro overtakes Wegovy</div>
+        <div class="tl-detail">India's top-selling drug by value — in months</div>
+      </div>
+    </div>
+
+    <div class="tl-item past reveal">
+      <div class="tl-left">
+        <div class="tl-date">Nov 2025</div>
+        <div class="tl-event">Novo cuts Indian prices 37%</div>
+        <div class="tl-detail">Pre-emptive strike before the patent cliff</div>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-right"></div>
+    </div>
+
+    <div class="tl-item now reveal">
+      <div class="tl-left"></div>
+      <div class="tl-dot"></div>
+      <div class="tl-right">
+        <div class="tl-date">🔴 March 20, 2026 — NOW</div>
+        <div class="tl-event">Patent expires. War begins.</div>
+        <div class="tl-detail">16+ generics in 48 hrs. Prices down 90%. India's pharma moment.</div>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-left">
+        <div class="tl-date">FY27 →</div>
+        <div class="tl-event">Another 40–50% price drop expected</div>
+        <div class="tl-detail">Then a further 10–30% in FY28. Race to the bottom begins.</div>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-right"></div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-left"></div>
+      <div class="tl-dot"></div>
+      <div class="tl-right">
+        <div class="tl-date">2030</div>
+        <div class="tl-event">₹4,500–5,000 Cr GLP-1 market</div>
+        <div class="tl-detail">Indian generic manufacturers become global suppliers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======= FOOTER ======= -->
+<div class="footer-stamp">
+  <div class="footer-quote reveal">
+    "The most aggressive wave of GLP-1 launches the country has ever seen — and we are only on day three."
+    <cite>— Industry executive, March 2026</cite>
+  </div>
+
+  <div class="footer-meta">
+    <div class="logo-text">PHARMA<br>INTEL</div>
+    <p>Sources: Business Today · Business Standard<br>IQVIA · ACS Chemical & Engineering News<br>Medical Dialogues · Omnicuris · AInvest</p>
+    <p style="margin-top:12px;">Published March 23, 2026 · India GLP-1 Tracker</p>
+  </div>
+</div>
+
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) *.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger siblings
+  document.querySelectorAll('.race-grid, .hero-stats, .pillars, .sidebar-facts, .strategy-list').forEach(parent => {
+    [...parent.children].forEach((child, i) => {
+      child.style.transitionDelay = (i * 0.08) + 's';
+    });
+  });
+</script>
+</body>
+</html>
